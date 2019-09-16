@@ -1,2 +1,2 @@
 #!/bin/bash
-set betty=Holberton
+set BETTY=Holberton
