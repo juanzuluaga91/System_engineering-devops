@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(($BINARY / 1000000000))
+echo $(( 10#$BINARY ))
