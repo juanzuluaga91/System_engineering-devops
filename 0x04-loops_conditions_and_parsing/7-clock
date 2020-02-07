@@ -2,10 +2,10 @@
 # Display Holberton School ten times
 
 x=1
-while [ "$x" -le 12 ]; do
+while [ "$x" -lt 13 ]; do
     echo "Hour: $x"
     y=1
-    while [ "$y" -le 59 ]; do
+    while [ "$y" -lt 60 ]; do
 	echo "$y"
 	((y++))
     done
