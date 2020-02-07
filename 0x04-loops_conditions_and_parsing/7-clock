@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Display Holberton School ten times
 
-x=1
-while [ "$x" -lt 13 ]; do
+x=0
+while [ "$x" -le 12 ]; do
     echo "Hour: $x"
     y=1
-    while [ "$y" -lt 60 ]; do
+    while [ "$y" -le 59 ]; do
 	echo "$y"
 	((y++))
     done
