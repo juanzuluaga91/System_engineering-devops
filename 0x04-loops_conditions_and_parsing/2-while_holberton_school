@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Display Holberton School ten times
+
+x=1
+while [ $x -le 10 ]
+do
+echo "Holberton School"
+((x++))
+done

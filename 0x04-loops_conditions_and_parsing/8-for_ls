@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Display Holberton School ten times
+
+for x in *;
+do
+    echo "$x" | cut -d'-' -f2
+done

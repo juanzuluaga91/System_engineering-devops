@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Display Holberton School ten times
+
+x=0
+while [ $x -lt 10 ]; do
+    if [ "$x" -eq 3 ]; then
+        echo "bad luck"
+    elif [ $x -eq 7 ]; then
+        echo "bad luck"
+    else
+        echo "Holberton School"
+    fi
+    ((x++))
+done

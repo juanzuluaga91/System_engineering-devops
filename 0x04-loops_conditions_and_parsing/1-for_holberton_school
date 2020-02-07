@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Display Holberton School ten times
+
+for _ in {1..10};
+do
+        echo "Holberton School"
+done
