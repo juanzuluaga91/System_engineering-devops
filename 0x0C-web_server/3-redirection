@@ -1,0 +1,6 @@
+sudo apt-get update
+sudo apt-get -y install nginx
+new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.johnfrusciante.com permanent;"
+cd /etc/nginx/sites-available
+sudo sed -i "s/server_name _;/$new_string/" default
+sudo service nginx start
