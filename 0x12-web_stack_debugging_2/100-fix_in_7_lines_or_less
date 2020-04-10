@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# set nginx user to run nginx
+pkill apache2
+chown -R nginx /etc/nginx/
+chmod u+rw /etc/nginx/nginx.conf
+su -c "sed -i 's/80/8080/' /etc/nginx/sites-available/default" nginx
+su -c "service nginx start" nginx
