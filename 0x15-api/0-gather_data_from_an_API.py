@@ -1,22 +1,32 @@
 #!/usr/bin/python3
-"""
-Uses fake todo api for requests
-"""
-
+"""Fake api for requests"""
+import json
 import requests
-from sys import argv
+import sys
 
 
-if __name__ == '__main__':
-    userId = argv[1]
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-                        format(userId), verify=False).json()
-    todo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
-                        format(userId), verify=False).json()
-    completed_tasks = []
-    for task in todo:
-        if task.get('completed') is True:
-            completed_tasks.append(task.get('title'))
-    print("Employee {} is done with tasks({}/{}):".
-          format(user.get('name'), len(completed_tasks), len(todo)))
-    print("\n".join("\t {}".format(task) for task in completed_tasks))
+if __name__ == "__main__":
+    try:
+        employee_id = sys.argv[1]
+    except:
+        print("usage: ./{} employee_id".format(sys.argv[0]))
+    namereq = requests.get(
+        'https://jsonplaceholder.typicode.com/users/{}'.format(employee_id))
+    name = json.loads(namereq.text)['name']
+
+    r = requests.get(
+        'https://jsonplaceholder.typicode.com/todos?userId={}'
+        .format(employee_id))
+    data = json.loads(r.text)
+
+    started = len(data)
+    finished = []
+
+    for obj in data:
+        if obj['completed'] is True:
+            finished += ["\t {}".format(obj['title'])]
+
+    print("Employee {} is done with tasks({}/{}):".format(
+        name, len(finished), started))
+    for task in finished:
+        print(task)
