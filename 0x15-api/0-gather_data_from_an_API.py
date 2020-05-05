@@ -3,8 +3,9 @@
 Uses fake todo api for requests
 """
 
-import requests
 from sys import argv
+import requests
+
 
 if __name__ == '__main__':
     userId = argv[1]
