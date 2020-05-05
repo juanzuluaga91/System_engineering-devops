@@ -2,21 +2,28 @@
 """
 get a list of dictionaries from a requests
 """
+
+
 import json
 import requests
-import sys
 
-
-if __name__ == "__main__":
-    root = "https://jsonplaceholder.typicode.com"
-    users = requests.get(root + "/users")
-    for names in users.json():
-        usr_id = names.get('id')
-        todo = requests.get(root + "/todos", params={"userId": usr_id})
-        csv_arr = []
-        for tasks in todo.json():
-            csv_arr.append({"task": tasks.get("title"),
-                            "completed": str(tasks.get("completed")),
-                            "username": names.get("name")})
-        with open("todo_all_employees.json", 'a') as f:
-            f.write(json.dumps({usr_id: csv_arr}))
+if __name__ == '__main__':
+    users = requests.get("https://jsonplaceholder.typicode.com/users",
+                         verify=False).json()
+    userdict = {}
+    usernamedict = {}
+    for user in users:
+        uid = user.get("id")
+        userdict[uid] = []
+        usernamedict[uid] = user.get("username")
+    todo = requests.get("https://jsonplaceholder.typicode.com/todos",
+                        verify=False).json()
+    for task in todo:
+        taskdict = {}
+        uid = task.get("userId")
+        taskdict["task"] = task.get('title')
+        taskdict["completed"] = task.get('completed')
+        taskdict["username"] = usernamedict.get(uid)
+        userdict.get(uid).append(taskdict)
+    with open("todo_all_employees.json", 'w') as jsonfile:
+        json.dump(userdict, jsonfile)
